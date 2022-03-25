@@ -1,0 +1,79 @@
+<div class="form-canvas-container" xmlns="http://www.w3.org/1999/html">
+
+  <div class="canvas-container">
+    <canvas id="graph" class="canvas" width="300" height="300">
+      Your browser does not support the HTML5 canvas tag.
+    </canvas>
+  </div>
+
+
+  <form class="form" id="myForm" role="form" >
+    <div class="inputs-container">
+      <div class="label-and-values">
+        <label for="xSelect">X</label><br>
+        <select form="myForm" id="xSelect" #x (change)="selectX(x.value)">
+          <option value="default">Выберите X</option>
+          <option value="-3">-3</option>
+          <option value="-2.5">-2.5</option>
+          <option value="-2">-2</option>
+          <option value="-1.5">-1.5</option>
+          <option value="-1">-1</option>
+          <option value="-0.5">-0.5</option>
+          <option value="0">0</option>
+          <option value="0.5">0.5</option>
+          <option value="1">1</option>
+          <option value="1.5">1.5</option>
+          <option value="2">2</option>
+          <option value="2.5">2.5</option>
+          <option value="3">3</option>
+          <option value="4.5">4.5</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+
+      <div class="label-and-values">
+        <form oninput="yOutPut.value=parseFloat(a.value)">
+          <label for="y">Y: <output name="yOutPut">0</output>  </label>
+          <div class="range-slider" style='--min:-3; --max:5; --step:0.5; --value:0; --text-value:"0";'>
+            <input type="range" id="y" name="a" min="-3" max="5" step="0.5" value="0" #y (change)="setY(y.value)" oninput="this.parentNode.style.setProperty('--value',this.value); this.parentNode.style.setProperty('--text-value', JSON.stringify(this.value));" j>
+
+            <output></output>
+            <div class='range-slider__progress'></div>
+
+          </div>
+        </form>
+      </div>
+
+      <div class="label-and-values">
+        <label for="rSelect">R</label><br>
+        <select form="myForm" id="rSelect" #r (change)="selectR(r.value)">
+          <option value="default">Выберите R</option>
+          <option value="-3">-3</option>
+          <option value="-2.5">-2.5</option>
+          <option value="-2">-2</option>
+          <option value="-1.5">-1.5</option>
+          <option value="-1">-1</option>
+          <option value="-0.5">-0.5</option>
+          <option value="0">0</option>
+          <option value="0.5">0.5</option>
+          <option value="1">1</option>
+          <option value="1.5">1.5</option>
+          <option value="2">2</option>
+          <option value="2.5">2.5</option>
+          <option value="3">3</option>
+          <option value="4.5">4.5</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="error-container" *ngIf="hasErrorMessage()">
+      <span>{{message}}</span>
+    </div>
+
+    <div class="buttons-container">
+      <button type="submit" id="submit-button" class="pretty-button" (click)="addPoint()">Отправить</button>
+      <button type="submit" id="clear-button" class="pretty-button dangerous-button" (click)="clearPoints()"> Удалить всё</button>
+    </div>
+  </form>
+</div>
